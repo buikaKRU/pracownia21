@@ -1,0 +1,36 @@
+@import '../../../scss/variables&mixins.scss';
+
+
+.projectThumb {
+    width: 30%;
+    position: relative;
+
+
+
+    .thumbImage{
+        height: 0;
+        padding-bottom: 100%;
+        position: relative;
+        overflow: hidden;
+
+    }
+
+    .projectInfo{
+        position: absolute;
+        height: 100%;
+        top: 0;
+        opacity: 0;
+    }
+
+
+    &:hover{
+        .thumbImage{
+            -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
+        }
+
+        .projectInfo{
+            opacity: 1;
+        }
+    }
+}
