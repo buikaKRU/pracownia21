@@ -19,12 +19,13 @@ class Projects extends Component {
     }
 
 
+
+    //// //// ////
+    ////  checking if all thumbnails images are loaded 
+    ////
     thumbsLoadedHandler = (thumb) => {
-   
 
         const noLoadedThumbs = this.state.loadedThumbs;
-        console.log('noLoadedThumbs = ', noLoadedThumbs);
-        
 
         this.setState({
             loadedThumbs: noLoadedThumbs + 1
@@ -41,21 +42,9 @@ class Projects extends Component {
   
     }
 
-    // componentWillUpdate(){
-
-    //     console.log('component will update')
-    //     console.log('this.state.ready = ', this.state.ready);
-        
-
-    //     if (this.state.ready === 'yes'){
-    //         console.log('should remove screen')
-    //         this.props.loading(false)
-    //     }
-    // }
 
 
     render(){
-
         window.scrollTo(0, 0);
         
 

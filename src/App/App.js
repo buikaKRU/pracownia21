@@ -6,7 +6,8 @@ import './App.scss';
 
 import Projects from '../components/Projects/Projects'
 import LanguageContext from '../context/LanguageContext';
-import LoadingScreen from '../components/UI/LoadingScreen/LoadingScreen'
+import LoadingScreen from '../components/UI/LoadingScreen/LoadingScreen';
+import SingleProject from '../components/SingleProject/SingleProject'
 
 
 class App extends Component {
@@ -204,6 +205,10 @@ class App extends Component {
 
 
 
+
+  //// //// ////
+  ////  managing the main loadin screen 
+  ////
   isLoadingHandler = (loading) => {
     if (this.state.posts.length > 0 && this.state.about != null && this.state.contact != null){
       console.log('AAAAALLLL state loaded')
@@ -212,23 +217,24 @@ class App extends Component {
         loadingType: 'content',
       })
     } else {
-      console.log('not all loaded')
     }
 
     if (loading){
-      console.log('still loading', loading)
       this.setState({
         loading: true
       })
     } else {
-      console.log('not loading', loading)
       this.setState({
         loading: false
       })
     }
+  }
 
-
-
+  //// //// ////
+  ////  managing page meta title 
+  ////
+  changeTitleHandler(newTitle){
+    document.title = newTitle;
   }
 
 
@@ -245,6 +251,7 @@ class App extends Component {
     
 
     const projects = () =>{
+      this.changeTitleHandler(this.state.language.projects)
       if (this.state.posts.length > 0) {
         return (
           <Projects 
@@ -274,14 +281,20 @@ class App extends Component {
         </h1>
 
         <Switch>
+
+          <Route 
+            path='/:id' render={(props) => <SingleProject {...props} 
+              posts={this.state.posts} 
+              title={this.changeTitleHandler}
+              loading={this.isLoadingHandler}/>}/>
           <Route render={projects}/>
 
         </Switch>
 
-        <LoadingScreen 
+        {/* <LoadingScreen 
           visible={this.state.loading}
           type={this.state.loadingType}>
-        </LoadingScreen>
+        </LoadingScreen> */}
 
       </Provider>
 
