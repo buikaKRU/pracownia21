@@ -1,0 +1,14 @@
+@import '../../scss/variables&mixins.scss';
+
+
+.layout{
+    position: relative;
+    min-height: inherit;
+
+    main{
+        position: relative;
+
+        padding-top: $headerH;
+    }
+}
+

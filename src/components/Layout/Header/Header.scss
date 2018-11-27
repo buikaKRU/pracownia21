@@ -1,0 +1,45 @@
+@import '../../../scss//variables&mixins.scss';
+
+
+header{
+    position: fixed;
+
+    width: 100%;
+    z-index: 1000;
+    background: $white;
+
+    height: $headerH;
+
+    .container{
+
+        .logo{
+            position: absolute;
+            top: 10px;
+            
+
+            img{
+                height: 40px; 
+            }
+        }
+
+        nav{
+            float: right;
+            
+            $padingRTemp: 10px;
+
+            ul{
+                list-style: none;
+                margin-right: - $padingRTemp;
+
+                li{
+                    display: inline-block;
+
+                    a{
+                        padding: 15px $padingRTemp;
+                        display: block
+                    }
+                }
+            }
+        }
+    }
+}

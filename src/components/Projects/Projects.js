@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import './Projects.scss';
 
-import Layout from '../../hoc/Layout/Layout'
+import PageLoader from '../../hoc/PageLoader/PageLoader'
 import ProjectThumb from './ProjectThumb/ProjectThumb'
+
 
 
 class Projects extends Component {
@@ -36,7 +37,7 @@ class Projects extends Component {
             this.setState({
                 ready: 'yes'
             });
-            this.props.loading(false);
+            this.props.hideLoading();
         } else {
         }
   
@@ -60,7 +61,6 @@ class Projects extends Component {
 
         return (
             <div className="projects">
-                {this.state.ready === 'no' ? <h1>LOADING Images</h1> : null}
                 {projects}
             </div>
             
@@ -69,4 +69,4 @@ class Projects extends Component {
 
 }
 
-export default Layout(Projects)
+export default PageLoader(Projects);

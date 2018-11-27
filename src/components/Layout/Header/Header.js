@@ -1,7 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 
+import './Header.scss';
 import LanguageContext from '../../../context/LanguageContext'
+import logo from '../../../assets/images/logo.jpeg'
 
 
 const header = (props) => {
@@ -25,6 +27,7 @@ const header = (props) => {
                     <header>
                         <div className="container">
                             <div className="logo">
+                                <img src={logo} alt="logo"/>
                             </div>
 
                             <nav>

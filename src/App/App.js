@@ -4,6 +4,7 @@ import axios from '../axios'
 
 import './App.scss';
 
+import Layout from '../components/Layout/Layout'
 import Projects from '../components/Projects/Projects'
 import LanguageContext from '../context/LanguageContext';
 import LoadingScreen from '../components/UI/LoadingScreen/LoadingScreen';
@@ -211,8 +212,7 @@ class App extends Component {
   ////
   isLoadingHandler = (loading) => {
     if (this.state.posts.length > 0 && this.state.about != null && this.state.contact != null){
-      console.log('AAAAALLLL state loaded')
-
+      loading = false;
       this.setState({
         loadingType: 'content',
       })
@@ -234,7 +234,7 @@ class App extends Component {
   ////  managing page meta title 
   ////
   changeTitleHandler(newTitle){
-    document.title = newTitle;
+    document.title = `pracownia21: ${newTitle}`;
   }
 
 
@@ -255,8 +255,7 @@ class App extends Component {
       if (this.state.posts.length > 0) {
         return (
           <Projects 
-            posts={this.state.posts}
-            loading={this.isLoadingHandler}>
+            posts={this.state.posts}>
           </Projects>
         )
       } else {
@@ -276,25 +275,25 @@ class App extends Component {
     
     return (
       <Provider value={this.state.language}>
-        <h1>
-          THE APP
-        </h1>
+        <Layout>
 
-        <Switch>
+          <Switch>
 
-          <Route 
-            path='/:id' render={(props) => <SingleProject {...props} 
-              posts={this.state.posts} 
-              title={this.changeTitleHandler}
-              loading={this.isLoadingHandler}/>}/>
-          <Route render={projects}/>
+            <Route 
+              path='/:id' render={(props) => <SingleProject {...props} 
+                posts={this.state.posts} 
+                title={this.changeTitleHandler}
+                loading={this.isLoadingHandler}/>}/>
+            <Route render={projects}/>
 
-        </Switch>
+          </Switch>
+          
+        </Layout>
 
-        {/* <LoadingScreen 
+        <LoadingScreen 
           visible={this.state.loading}
           type={this.state.loadingType}>
-        </LoadingScreen> */}
+        </LoadingScreen>
 
       </Provider>
 

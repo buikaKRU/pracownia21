@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import PageLoader from '../../hoc/PageLoader/PageLoader';
 import {Redirect} from 'react-router-dom';
 
@@ -8,11 +8,10 @@ import ImageComponent from '../ImageComponent/ImageComponent';
 
 
 
-class SingleProject extends Component  {
+class SingleProject extends Component {
 //// //// ////
-////  SINGLE PROJECT PAGE 
+////  PAGE DISPLAYING SINGLE PROJECT 
 ////
-// redirects to "/" if dont find project titleID in URL
 
 
     state={
@@ -22,55 +21,30 @@ class SingleProject extends Component  {
     }
 
 
-    componentDidMount(){
-        console.log('1-1-1-1 COMPONENT DID MOUNT')
-
-        this.updateState(this.props)
+    componentWillMount = () =>{
+        console.log('***** [singleProject] will mount')
+        console.log('props', this.props)
     }
 
 
-    componentWillReceiveProps(props){
-        console.log('2-2-2-2 COMPONENT WILL RECIVE PROPS')
-
-        this.updateState(props)
-    }
-
-    componentWillUnmount(){
-        console.log('9-9-9-9 COMPONENT WILL UNMONT !!!')
+    componentWillReceiveProps (props){
+        console.log('***** will recive props = ');
     }
 
 
-
-    //deals with hiding page loader if all images are already loaded
-    imgLoadedHandler = () => {
-        const imagesLoaded = this.state.imagesLoaded + 1;
-
-        if (imagesLoaded === this.state.imagesToLoad - 1) {
-            console.log('all images loaded')
-            this.props.hideLoading();
-        } else {
-            this.setState({
-                imagesLoaded: imagesLoaded
-            })
-        }
-    }
-
-
-    //// //// ////
-    ////  STATE UPDATE 
-    ////
-    //updates state after componentWillMount() and componentWillReciveProps()
+    
     updateState = (props) => {
-        console.log('UPDATE STATE')
-
-        if ( props.posts.length > 0) {
-            
+        console.log('updateState')
+        
+        if (props.posts.length > 0){
             const url = props.match.params.id;
 
+    
             const projectNames = props.posts.map(element => {
                 return element.titleID;
             })
     
+            
             const projectIndex = projectNames.findIndex(element => {
                 return element === url;
             })
@@ -87,24 +61,35 @@ class SingleProject extends Component  {
                     projectIndex: -1,
                 })
             }
+
         }
     }
 
 
 
-    //// //// ////
-    ////  PREPARING SINGLE PROJECT CONTENT 
-    ////
-    
-    projectContent = (language) => {
+    imgLoadedHandler = () => { 
+        this.props.hideLoading()
 
-        //IF THERE IS MATCH PROJECT
-        if (this.state.projectIndex > -1 && this.state.projectIndex != null) {
+        const imagesLoaded = this.state.imagesLoaded + 1;
 
+        imagesLoaded === this.state.imagesToLoad ? 
+            this.props.hideLoading() : this.setState({imagesLoaded: imagesLoaded})
+    }
+
+
+
+
+    projectContent = (language) =>  {
+
+  
+ 
+        //IF THERE IS SUCH A PROJECT
+        if (this.state.projectIndex != null && this.state.projectIndex > -1) {
+  
             const project = this.props.posts[this.state.projectIndex]
             this.props.title(project.title);
 
-
+            
             return (
                 <>
                 <ImageComponent 
@@ -126,48 +111,39 @@ class SingleProject extends Component  {
                 {
                     project.images.map((image, index) => {
                         if (index > 0) {
-                            if (image.alt) {
-                                return (
-                                    <ImageComponent 
-                                        key={image.alt+index}
-                                        src={image.src_full}
-                                        alt={image.alt}
-                                        imgLoaded={this.imgLoadedHandler}
-                                    />
-                                )
-                            } else return null
-                  
+                            return (
+                                <ImageComponent 
+                                    key={image.alt+index}
+                                    src={image.src_thumb}
+                                    alt={image.alt}
+                                    imgLoaded={this.imgLoadedHandler}
+                                />
+                            )
                         } else {
                             return null
                         }
                     })
                 }
+
                 </>
             )
 
 
-        // IF THERE IS NO MATCH
-        } else if (this.state.projectIndex === -1 ){
-            return (
-                <>
-                    <Redirect to="/"/>
-                </>
-            )
-
-        // THERE IS NO DATA TO LOAD    
-        } else {
-            return <h1>loading</h1>
+        } else if (this.state.projectIndex === -1) {
+            //IF THERE IS NOT SUCH A PROJECT
+            console.log('there is NOT such a project')
+            return <Redirect to="/"/>   
         }
-        
     }
-  
-    
-    //// //// ////
-    ////  RENDER 
-    ////
-    render(){
 
+
+
+    render() {
         const { Consumer } = languageContext;
+        console.log('[single project RENDER]this.state = ', this.state);
+
+        this.updateState(this.props)
+        
         return (
             <Consumer>
                 {language => {
@@ -178,10 +154,11 @@ class SingleProject extends Component  {
                     )
                 }}
             </Consumer> 
+            
         )
     }
+    
 }
 
 
-
-export default PageLoader(SingleProject)
+export default PageLoader(SingleProject);

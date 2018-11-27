@@ -6,7 +6,7 @@ import logo from '../../../assets/images/logo.jpeg'
 
 class loadingScreen extends Component {
 //// //// ////
-////  INITIAL LOADING SCREEN 
+////  INITIAL LOADING SCREEN WHILE FETCHIN' DATA
 ////
 
 
@@ -28,9 +28,6 @@ class loadingScreen extends Component {
 
 
     componentWillReceiveProps(newProps){
-        console.log('[Loader]this.props = ', newProps);
-    
-        
 
         if (newProps.visible === false){
             this.setState({
@@ -53,11 +50,13 @@ class loadingScreen extends Component {
         }
     }
 
+
+    //displays spinner only if logo image is already loaded
     imageLoaded = () => {
         this.setState({
             logoLoaded: true
         })
-        
+
     }
 
 

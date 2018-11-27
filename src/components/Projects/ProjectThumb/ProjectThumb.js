@@ -25,7 +25,8 @@ const projectThumb = (props) => {
                                 <ImageComponent 
                                     src={props.project.images[0].src_thumb}
                                     alt={props.project.images[0].alt}
-                                    loaded={props.thumbLoaded}
+                                    imgLoaded={props.thumbLoaded}
+                                    absolute={true}
                                 />
                             </div>
 
