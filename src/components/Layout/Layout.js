@@ -6,7 +6,7 @@ import Footer from './Footer/Footer'
 
 const layout = (props) => {
 //// //// ////
-////  HOC FOR ADDING HEADER MAIN FOOTER
+////  THE MAIN LAYOUT ADDING FOOTER AND HEADER TO THE APP
 ////
 
 
@@ -15,13 +15,13 @@ const layout = (props) => {
         
             <Header/>
 
-                <main className="Layout">
+                <main>
                     
                     {props.children}
                     
                 </main>
 
-            <Footer/>
+            <Footer contactData={props.contactData}/>
         </div>
     )
 }

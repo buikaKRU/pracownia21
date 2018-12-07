@@ -10,6 +10,9 @@ const PageLoader = (WrappedComponent) => {
 ////
 // REQIRED PROPS:
 //     - hideLoading() - to hide the spinner screen
+// 
+// UNREQUIRED PROPS:
+//     - showLoading() - to show back the spinner screen
 
    
 
@@ -20,14 +23,12 @@ const PageLoader = (WrappedComponent) => {
             loading: true,
             style: {
                 opacity: 1,
-                zIndex: 1000,
+                zIndex: 100,
             }
         }
     
     
         hideLoadingHandler = () => {
-
-            console.log('[PageLoader loading: false]')
             this.setState({
                 loading: false,
                 style: {
@@ -37,8 +38,20 @@ const PageLoader = (WrappedComponent) => {
             })
         }
 
-        render () {
 
+        showLoadingHandler = () => {
+            this.setState({
+                loading: false,
+                style: {
+                    opacity: 1,
+                    zIndex: 100
+                }
+            })
+        }
+
+
+
+        render () {
             return(
                 <>
                 <div className="pageLoader" style={this.state.style}>
@@ -51,7 +64,8 @@ const PageLoader = (WrappedComponent) => {
 
                 <WrappedComponent 
                     {...this.props} 
-                    hideLoading={this.hideLoadingHandler}/>       
+                    hideLoading={this.hideLoadingHandler}
+                    showLoading={this.showLoadingHandler}/>       
                 </>
             )
         }

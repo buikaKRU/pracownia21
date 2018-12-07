@@ -18,10 +18,12 @@ const imageComponent = (props) => {
     const imgStyle = () => {
         if (props.absolute) {
             return {
+                height: '100%',
                 position: 'absolute',
-                top: '50%',
-                WebkitTransform: 'translateY(-50%)',
-                transform: 'translateY(-50%)'
+                left: '50%',
+                WebkitTransform: 'translateX(-50%)',
+                transform: 'translateX(-50%)',
+                width: 'unset'
             }
             
         } else {

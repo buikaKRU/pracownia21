@@ -31,15 +31,9 @@ const projectThumb = (props) => {
                             </div>
 
                             <div className='projectInfo'>
-                                <h3>
+                                <h2>
                                     {props.project.title}
-                                </h3>
-
-                                <p>{language.investor + ': '}{props.project.investor}</p>
-                                
-                                {props.project.colaboration != null ?
-                                    <p>{language.colaboration}</p> :
-                                    null}
+                                </h2>
                             </div>
                        </NavLink>
                         

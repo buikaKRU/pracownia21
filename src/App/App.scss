@@ -6,9 +6,21 @@
 ////  ROOT BODY  
 ////
 
+@font-face {
+    font-family: 'SEGOE';
+    src: local('Segoe UI'), local('SegoeUI'),
+        url('../assets/fonts/segoeuil.ttf')
+  }
+
+
+body,
+html,
+#root{
+    //height: 100vh;
+}
 
 #root{
-    min-height: 100vh;
+    //overflow-x: hidden;
 }
 
 
@@ -24,6 +36,36 @@
 ////  BASIC TAGS 
 ////
 
-ul{
-    
+
+
+
+a{
+    text-decoration: none;
+    color: $black;
+
+}
+
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,lo,
+a{
+    font-family: 'SEGOE', serif;
+    font-weight: lighter;
+    letter-spacing: 0.05em;
+    line-height: 1.1em
+}
+
+
+h1, h2{
+    font-weight: 600;    
+}
+
+h2{
+    font-size: 35px;
 }

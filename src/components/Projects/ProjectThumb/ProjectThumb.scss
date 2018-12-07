@@ -1,9 +1,22 @@
 @import '../../../scss/variables&mixins.scss';
 
 
+$gridWidthTemp: 0.25*$padding;
+
 .projectThumb {
-    width: 30%;
+    width: calc(33.3% - #{$gridWidthTemp});
+    margin-bottom: 2*$gridWidthTemp;
     position: relative;
+    background: $black;
+    overflow: hidden;
+    
+    a{
+        color: white;
+    }
+
+    *{
+        @include animate;
+    }
 
 
 
@@ -12,14 +25,23 @@
         padding-bottom: 100%;
         position: relative;
         overflow: hidden;
-
+        
     }
 
     .projectInfo{
         position: absolute;
-        height: 100%;
-        top: 0;
+        top: 50%;
+        transform: translateY(-50%);
         opacity: 0;
+        padding: 0.5*$padding;
+        text-shadow: 0 0 20px $black;
+
+        transition: 0.5s all;
+
+        h2{
+
+        }
+
     }
 
 
@@ -27,10 +49,48 @@
         .thumbImage{
             -webkit-filter: grayscale(100%);
             filter: grayscale(100%);
+            opacity: 0.6;
         }
 
         .projectInfo{
             opacity: 1;
         }
+    }
+}
+
+
+@media screen and (max-width: $maxTabletWidth + 100px){
+    .projectThumb{
+        .projectInfo{
+            h2{
+                font-size: 25px;
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: $maxTabletWidth){
+    .projectThumb{
+
+        &:hover{
+            .thumbImage{
+                -webkit-filter: none;
+                filter: none;
+                opacity: 1;
+            }
+    
+        }
+
+        .projectInfo{
+            display: none;
+        }
+    }
+}
+
+
+@media screen and (max-width: $maxMobileWidth){
+    .projectThumb{
+        width: calc(50% - #{$gridWidthTemp});
     }
 }

@@ -5,41 +5,68 @@ header{
     position: fixed;
 
     width: 100%;
+    left: 0;
     z-index: 1000;
     background: $white;
-
     height: $headerH;
 
     .container{
-
+        max-width: $maxDesktopWidth;
+        margin: auto;
         .logo{
             position: absolute;
             top: 10px;
             
-
             img{
                 height: 40px; 
             }
         }
 
-        nav{
-            float: right;
+        .navbar{
+
+            nav{
+                float: right;
+                $padingRTemp: 10px;
             
-            $padingRTemp: 10px;
-
-            ul{
-                list-style: none;
-                margin-right: - $padingRTemp;
-
-                li{
-                    display: inline-block;
-
-                    a{
-                        padding: 15px $padingRTemp;
-                        display: block
+                ul{
+                    li{
+                        display: inline-block;
+                        @include textLink;
+            
+                        a{
+                            padding: 15px $padingRTemp;
+ 
+                        }
                     }
                 }
             }
+        }
+    }
+}
+
+@media screen and (max-width: $maxTabletWidth){
+    header{
+        .container{
+            .navbar{
+                display: none;
+            }
+    
+            .logo{
+                position: relative;
+                a{
+                    text-align: center;
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $maxDesktopWidth){
+    header{
+        .container{
+            padding-left: $paddingFS;
+            //padding-right: $paddingFS;
         }
     }
 }

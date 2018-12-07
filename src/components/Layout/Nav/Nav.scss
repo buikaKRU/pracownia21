@@ -1,0 +1,22 @@
+@import '../../../scss/variables&mixins.scss';
+
+
+nav{
+
+    ul{
+        list-style: none;
+        //margin-right: - $padingRTemp;
+
+        li{
+            
+            //@include navLink;
+
+            a{
+                padding: 15px 10px;
+                display: block;
+
+                
+            }
+        }
+    }
+}

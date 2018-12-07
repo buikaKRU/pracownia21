@@ -2,6 +2,7 @@
   "name": "1811",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://react.pracownia21.pl",
   "dependencies": {
     "axios": "^0.18.0",
     "node-sass": "^4.10.0",

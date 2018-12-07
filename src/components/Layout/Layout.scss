@@ -3,12 +3,31 @@
 
 .layout{
     position: relative;
-    min-height: inherit;
+    min-height: 100vh;
+    max-width: $maxDesktopWidth;
+    margin: auto;
 
     main{
         position: relative;
+        padding-top: $paddingForHeader;
+        padding-bottom: $footerH - 4px;
 
-        padding-top: $headerH;
+        // min-height: 100%;
+        // min-height: -webkit-fill-available;
+
+        //min-height: calc(100vh - #{$paddingForHeader} - #{$paddingForFooter});
+
+        max-width: $maxDesktopWidth;
+        margin: auto;  
+    }
+}
+
+
+@media screen and (max-width: $maxMobileWidth){
+    .layout{
+        main{
+           // padding-bottom: $paddingForFooter;
+        }
     }
 }
 

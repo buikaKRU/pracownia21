@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-        baseURL: 'http://staging.pracownia21.pl/wp-json/wp/v2/'
+        baseURL: 'https://data.pracownia21.pl/wp-json/wp/v2/'
     }
 );
 

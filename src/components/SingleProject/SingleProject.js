@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PageLoader from '../../hoc/PageLoader/PageLoader';
 import {Redirect} from 'react-router-dom';
+import './SingleProject.scss';
 
 
 import languageContext from '../../context/LanguageContext';
@@ -23,21 +24,15 @@ class SingleProject extends Component  {
 
 
     componentDidMount(){
-        console.log('1-1-1-1 COMPONENT DID MOUNT')
-
         this.updateState(this.props)
     }
 
 
     componentWillReceiveProps(props){
-        console.log('2-2-2-2 COMPONENT WILL RECIVE PROPS')
-
         this.updateState(props)
     }
 
-    componentWillUnmount(){
-        console.log('9-9-9-9 COMPONENT WILL UNMONT !!!')
-    }
+    
 
 
 
@@ -46,7 +41,6 @@ class SingleProject extends Component  {
         const imagesLoaded = this.state.imagesLoaded + 1;
 
         if (imagesLoaded === this.state.imagesToLoad - 1) {
-            console.log('all images loaded')
             this.props.hideLoading();
         } else {
             this.setState({
@@ -61,7 +55,6 @@ class SingleProject extends Component  {
     ////
     //updates state after componentWillMount() and componentWillReciveProps()
     updateState = (props) => {
-        console.log('UPDATE STATE')
 
         if ( props.posts.length > 0) {
             
@@ -104,45 +97,74 @@ class SingleProject extends Component  {
             const project = this.props.posts[this.state.projectIndex]
             this.props.title(project.title);
 
+            const projectImages = project.images.map((image, index) => {
+                if (index > 0) {
+                    if (image.alt) {
+                        return (
+                            <ImageComponent 
+                                key={image.alt+index}
+                                src={image.src_full}
+                                alt={image.alt}
+                                imgLoaded={this.imgLoadedHandler}
+                            />
+                        )
+                    } else return null
+          
+                } else {
+                    return null
+                }
+            })
+
+
 
             return (
-                <>
-                <ImageComponent 
-                    src={project.images[0].src_thumb}
-                    alt={project.images[0].alt}
-                    imgLoaded={this.imgLoadedHandler}
-                />
+                <div className="singleProject">
+                    <ImageComponent 
+                        src={project.images[0].src_full}
+                        alt={project.images[0].alt}
+                        imgLoaded={this.imgLoadedHandler}
+                    />
 
-                <div className='projectInfo'>
-                    <h3>
-                        {project.title}
-                    </h3>
-                    <p>{language.investor + ': '}{project.investor}</p>
-                    {project.colaboration != null ?
-                        <p>{language.colaboration}</p> :
-                        null}
+                    <div className='projectInfo'>
+                        <h2>
+                            {project.title}
+                        </h2>
+
+                        <p>
+                            <strong>{language.location + ': '}</strong>{project.location}
+                        </p>
+
+                        {project.investor !== "" ?
+                            <p><strong>{language.investor + ': '}</strong>{project.investor}</p> :
+                            null}
+
+                        <p>
+                            {project.yearProject !== "" ?
+                                <><strong>{language.project + ': '}</strong>{project.yearProject}<br/></>:
+                                null}
+                            {project.yearConstruction !== "" ?
+                                <span><strong>{language.realization + ': '}</strong>{project.yearConstruction}</span>:
+                                null}
+                            
+                        </p>
+
+                        {project.colaboration !== "" ?
+                            <p><strong>{language.colaboration+ ': '}</strong>
+                                {project.colaborationLink !== "" ?
+                                    <a href={project.colaborationLink} target="_blank" rel="noopener noreferrer">{project.colaboration}</a>:
+                                    <span>{project.colaboration}</span>}
+                            </p> :
+                            null}
+
+                        {project.description!== "" ?
+                            <p dangerouslySetInnerHTML={{__html: project.description}}></p> :
+                            null}
+                        
+                    </div>
+                    
+                    {projectImages}
+
                 </div>
-                
-                {
-                    project.images.map((image, index) => {
-                        if (index > 0) {
-                            if (image.alt) {
-                                return (
-                                    <ImageComponent 
-                                        key={image.alt+index}
-                                        src={image.src_full}
-                                        alt={image.alt}
-                                        imgLoaded={this.imgLoadedHandler}
-                                    />
-                                )
-                            } else return null
-                  
-                        } else {
-                            return null
-                        }
-                    })
-                }
-                </>
             )
 
 

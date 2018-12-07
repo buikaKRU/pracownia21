@@ -1,0 +1,31 @@
+@import '../../scss/variables&mixins.scss';
+
+
+.singleProject{
+    
+    .projectInfo{
+        padding-bottom: $padding;
+
+        @include textLink;
+
+        p, h2{
+            padding-bottom: 0.3*$padding;
+        }
+    }
+
+    .imageComponent{
+        //margin-bottom: $gridWidthTemp;
+        padding-bottom: $padding;
+    }
+}
+
+@media screen and (max-width: $maxDesktopWidth){
+    .singleProject{
+    
+        .projectInfo{
+            padding-left: $paddingFS;
+            padding-right: $paddingFS;
+        }
+    
+    }
+}

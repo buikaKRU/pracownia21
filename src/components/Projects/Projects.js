@@ -33,7 +33,6 @@ class Projects extends Component {
         })
 
         if (this.state.noOfProjects === noLoadedThumbs + 1){
-            console.log('all images loaded')
             this.setState({
                 ready: 'yes'
             });
@@ -49,11 +48,11 @@ class Projects extends Component {
         window.scrollTo(0, 0);
         
 
-        const projects = this.props.posts.map(project => {
+        const projects = this.props.posts.map((project, index) => {
             return (
                 <ProjectThumb 
                     project={project} 
-                    key={project.title}
+                    key={project.title+index}
                     thumbLoaded={this.thumbsLoadedHandler}
                 />
             )

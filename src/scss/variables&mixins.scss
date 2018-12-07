@@ -10,6 +10,8 @@
 ////
 
 $white: white;
+$black: black;
+$graphite: #333333;
 
 
 
@@ -17,10 +19,19 @@ $white: white;
 ////  VARIABLES 
 ////
 
-$footerH: 50px;
+$footerH: 67px;
+$footerMobileH: 47px;
 $headerH: 60px;
+
+$paddingForHeader: $headerH*1;
+$paddingForFooter: 3*$footerH;
 $padding: 20px;
+$paddingFS: 0.5 * $padding;
 
+
+$maxDesktopWidth: 1160px;
+$maxTabletWidth: 600px;
+$maxMobileWidth: 440px;
 
 
 
@@ -30,6 +41,33 @@ $padding: 20px;
 //  === MIXINS ===   === MIXINS ===   === MIXINS === 
 //  ////////////////////////////////////////////////////////////////
 
+@mixin navLink{
+    a{
+        &:hover{
+            background: $black;
+            color: $white;
+            opacity: 0.8;
+        }
+    }
+
+}
+
+@mixin textLink{
+    a{
+        &:hover{
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+    }
+
+}
+
+
+
+
+@mixin animate{
+    transition: 1s all;
+}
 
 
 @mixin spinningLoader{

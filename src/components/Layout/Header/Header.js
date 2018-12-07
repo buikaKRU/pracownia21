@@ -2,59 +2,36 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 
 import './Header.scss';
-import LanguageContext from '../../../context/LanguageContext'
-import logo from '../../../assets/images/logo.jpeg'
+import Nav from '../Nav/Nav';
+import logo from '../../../assets/images/logo.jpeg';
+
 
 
 const header = (props) => {
 //// //// ////
-////  DISPLAYS HEADER IN LAYOUT 
+////  DISPLAYS HEADER IN THE LAYOUT 
 ////
 
-    const { Consumer } = LanguageContext;
-
-
-
     return (
-
-        <Consumer>
-    
-            {language => {
- 
-                
-                return (
                     
-                    <header>
-                        <div className="container">
-                            <div className="logo">
-                                <img src={logo} alt="logo"/>
-                            </div>
+        <header>
+            <div className="container">
+                <div className="logo">
+                    <NavLink to="/home">
+                        <img src={logo} alt="logo"/>
+                    </NavLink>
+                </div>
 
-                            <nav>
-                                <ul>
+                <div className='navbar'>
+                    <Nav/>
+                </div>
 
-                                    <li>
-                                        <NavLink to='/'>{language.projects}</NavLink>
-                                    </li>
 
-                                    <li>
-                                        <NavLink to={'/'+language.about}>{language.about}</NavLink>
-                                    </li>
+            </div>
+        </header>
+         
+    )
 
-                                     <li>
-                                        <NavLink to={'/'+language.contact}>{language.contact}</NavLink>
-                                    </li>
-
-                                </ul>
-                            </nav>
-                        </div>
-                    </header>
-                     
-                )
-            }}
-
-        </Consumer>
-    );
 
 }
 
